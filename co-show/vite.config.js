@@ -7,4 +7,8 @@ export default defineConfig({
   build: {
     outDir: "dist",
   },
+  server: {
+    host: "0.0.0.0", // 외부 접근 허용 (로봇에서 접근 가능하도록)
+    port: 5173,
+  },
 });
