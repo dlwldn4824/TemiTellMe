@@ -1,0 +1,34 @@
+/* 16:10 캔버스 */
+.home-wrapper{
+  width: 1920px;
+  min-height: 1200px;
+  position: relative;
+  background: url("/assets/main/메인 화면.svg") center top/1920px 1200px no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  margin: 0 auto;
+}
+.moving-footer {
+  position: fixed;      /* 화면 맨 아래 항상 보이도록 */
+  bottom: 50px;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  pointer-events: none; /* 클릭 방해 안 함 */
+  z-index: 9999;
+  justify-content: center;
+}
+
+.moving-text {
+  font-family: nanumRound;
+  white-space: nowrap;
+  font-size: 30px;
+  font-weight: 600;
+  color: #84AA0E; /* 원하는 색으로 변경 */
+  position: relative;
+}

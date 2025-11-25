@@ -1,0 +1,106 @@
+:root {
+  --card-width: 277px;
+  --card-height: 560px;
+  --radius: 28px;
+  --shadow: 0 14px 28px rgba(0, 0, 0, 0.12);
+  --shadow-hover: 0 18px 42px rgba(0, 0, 0, 0.16);
+
+  /* Figma 고정 top 값 */
+  --cards-top: 376px;
+}
+
+/* ===================== */
+/* 카드 그리드 래퍼 */
+/* ===================== */
+.wrap {
+  position: absolute;
+  top: var(--cards-top);  /* 💯 고정값 */
+  left: 50%;
+  transform: translateX(-50%);
+
+  display: grid;
+  grid-template-columns: repeat(6, var(--card-width)); /* 💯 고정 */
+  gap: 24px;
+
+  width: auto;
+  height: auto;
+
+  /* 반응형 폭 제한 제거 */
+  max-width: none;
+}
+
+/* ===================== */
+/* 카드 */
+/* ===================== */
+.card {
+  width: var(--card-width);
+  height: var(--card-height);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  color: #fff;
+  font-family: pinkFong;
+  font-weight: 800;
+  text-align: center;
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* 텍스트 */
+.label {
+  font-size: 55px;
+  font-weight: 900;
+  margin-bottom: 12px;
+}
+
+.bottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 38%;
+  opacity: 0.95;
+}
+/* ===================== */
+/* 카드 이미지 개별 배경 */
+/* ===================== */
+
+/* 1번 카드: 전시장 안내 */
+.card01 {
+  background: url("../assets/home/전시장안내_버튼.png") no-repeat center/cover;
+}
+
+/* 2번 카드: 경진 대회 일정 */
+.card02 {
+  background: url("../assets/home/경진대회일정_버튼.png") no-repeat center/cover;
+}
+
+/* 3번 카드: 이벤트 참여 */
+.card03 {
+  background: url("../assets/home/이벤트참여_버튼.png") no-repeat center/cover;
+}
+
+/* 4번 카드: 현장 줄서기 */
+.card04 {
+  background: url("../assets/home/현장줄서기_버튼.png") no-repeat center/cover;
+}
+/* 5번 카드: 사진 촬영 */
+.card05 {
+  background: url("../assets/home/포토존_버튼.png") no-repeat center/cover;
+}
+
+/* 5번 카드: 문의 */
+.card06 {
+  background: url("../assets/home/문의_버튼.png") no-repeat center/cover;
+}

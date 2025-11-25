@@ -1,0 +1,106 @@
+@import "./theme.css";
+
+:root{
+  --canvas-width: 1920;
+  --canvas-height: 1200;
+
+  /* 전체 UI 축소율: 1 = 100%, 0.4 = 40% */
+  /* --zoom-scale: 0.4; */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* 화면 밖 스크롤 방지 */
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans KR", Arial;
+}
+
+/* 가운데 정렬 유틸 */
+.app-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100dvh;
+  padding: clamp(8px, 2dvh, 32px);
+}
+
+/* ---------- 반응형 전체 캔버스 래퍼 ---------- */
+.stage-wrapper {
+  /* 현재 화면 크기 기준 스케일 계산 */
+  --scale-x: calc(100vw / var(--canvas-width));
+  --scale-y: calc(100vh / var(--canvas-height));
+  --stage-scale: min(var(--scale-x), var(--scale-y));
+
+  position: fixed;
+  inset: 0; /* top:0, right:0, bottom:0, left:0 */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* 중요: 축소된 내용이 잘리지 않게 */
+  overflow: visible;
+}
+
+/* ---------- 실제 1920×1200 캔버스 ---------- */
+.root-fixed {
+  transform: scale(0.67) !important;
+  border: 4px solid red;
+}
+
+/* 기본 컨테이너 */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 28px 20px 60px;
+}
+
+/* 링크 기본 스타일 */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* 상단바 */
+.top-reveal { display: none; }
+.topbar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(255, 255, 255, .92);
+  backdrop-filter: blur(6px);
+}
+
+/* 폰트 임포트 */
+@font-face {
+  font-family: "Pinkfong";
+  src: url("/fonts/Pinkfong_Light.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "nanumRound";
+  src: url("/fonts/NanumSquareRoundOTFB.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "DNFBitBit";
+  src: url("/fonts/DNFBitBitv2.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}

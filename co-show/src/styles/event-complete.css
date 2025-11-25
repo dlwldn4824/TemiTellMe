@@ -1,0 +1,164 @@
+.done-wrap{
+  width: 1920px;
+  min-height: 1200px;
+  position: relative;
+  background:
+    url('../assets/eventComplete/event-complete-bg.svg') center top/1920px 1200px no-repeat,
+    repeating-linear-gradient(
+      90deg,
+      #BFE9F9 0 24px,
+      #C8F0FA 24px 48px
+    );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  margin: 0 auto; /* 다른 페이지에는 영향 없이 이 페이지들만 고정 폭 중앙 정렬 */
+}
+/* 전화번호 입력/완료 전용 배경 사이즈 고정 */
+.done-wrap--phone{
+  background:
+    url('../assets/eventComplete/event-complete-bg-number.svg') center top/1920px 1200px no-repeat,
+    repeating-linear-gradient(
+      90deg,
+      #BFE9F9 0 24px,
+      #C8F0FA 24px 48px
+    );
+}
+.done-wrap--finish{
+  background:
+    url('../assets/eventComplete/event-complete-finish.svg') center top/1920px 1200px no-repeat,
+    repeating-linear-gradient(
+      90deg,
+      #BFE9F9 0 24px,
+      #C8F0FA 24px 48px
+    );
+}
+.done-card{
+  width: min(820px, 92%);
+  box-sizing: border-box;
+  overflow: hidden;               /* ← 넘침 방지 */
+  background:#cfeef9;
+  border-radius:10px;
+  padding:22px 20px 18px;
+  box-shadow:0 16px 34px rgba(0,0,0,.12);
+}
+.done-head{ text-align:left; margin-bottom:18px; }
+.done-need{ font-weight:900; margin-bottom:4px; }
+.done-title{ margin:0 0 4px; font-size:22px; font-weight:900; }
+.done-sub{ margin:0; color:#333; font-size:13px; }
+
+.done-form{ display:flex; flex-direction:column; gap:14px; }
+
+/* 입력 박스 11칸 (010xxxxxxxx) */
+/* 3칸 입력 줄 */
+.group-row{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;          /* 칸 사이 간격 */
+  margin:10px 0 6px;
+  flex-wrap:wrap;    /* 좁으면 다음 줄로 */
+}
+
+/* ✅ “너비 고정”으로 변경 (이전의 flex:1 1 ... 제거) */
+.group-input {
+  flex: 0 0 auto;
+  width: clamp(48px, 6vw, 64px);   /* ← 정사각형 (작은 화면에서도 유지) */
+  height: clamp(48px, 6vw, 64px)ㄹ;
+  background: #fff;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 800;
+  outline: none;
+  transition: all 0.15s ease;
+}
+
+.group-input:focus {
+  border-color: #73B7FF;
+  box-shadow: 0 0 0 3px rgba(115,183,255,0.25);
+  transform: scale(1.05);
+}
+.group-dash{
+  font-weight:900; color:#7b7b7b; user-select:none; padding:0 2px;
+}
+
+/* 작은 화면에서 더 아담하게 */
+@media (max-width: 540px) {
+  .group-input {
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
+  }
+}
+
+/* 에러 텍스트 */
+.error{ margin:0 6px; color:hsl(0, 0%, 100%); font-weight:900; font-size:25px; }
+
+/* 버튼들 */
+.actions{ display:flex; gap:12px; justify-content:flex-end; }
+.btn-ghost{
+  background:#ff80a1; color:#fff; border:0; border-radius:18px;
+  padding:10px 16px; font-weight:900; cursor:pointer;
+}
+.btn-done{
+  background:#f0cf63; color:#7a5a00; border:0; border-radius:18px;
+  padding:10px 18px; font-weight:900; cursor:not-allowed; opacity:.6;
+  transition:.15s ease filter, .15s ease transform, .15s ease opacity;
+}
+.btn-done.is-active{ cursor:pointer; opacity:1; }
+.btn-done.is-active:hover{ filter:brightness(.96); transform:translateY(-1px); }
+
+@media (max-width: 560px){
+  .box{ height:42px; font-size:18px; }
+}
+
+/* 이벤트 랜딩 하단 버튼 영역 */
+.cta{ margin-top:auto; width:100%; }
+.cta-actions{
+  display:flex; justify-content:center; align-items:center;
+  gap:36px; padding:0 16px 120px;
+}
+.cta-btn{
+  border:0; border-radius:999px; padding:22px 36px; font-weight:900; font-size:32px;
+  cursor:pointer; transition:.15s ease transform, .15s ease filter; white-space:nowrap;
+}
+.cta-btn:hover{ transform:translateY(-1px); }
+.cta-btn-yes{ background:#0b0b0b; color:#fff; }
+.cta-btn-no{ background:#fff; color:#0b0b0b; border:3px solid #0b0b0b; }
+
+/* ---------------- 전화번호 입력 전용 UI ---------------- */
+.phone-form{ display:flex; flex-direction:column; align-items:center; margin-top:460px; margin-bottom:18px; }
+.phone-boxes{ background:#a9eab1; border-radius:26px; padding:18px 28px; display:flex; align-items:center; gap:18px; width:fit-content; box-shadow:0 6px 16px rgba(0,0,0,0.08); }
+.phone-group{ display:flex; gap:16px; }
+.phone-dash{ color:#2a9c54; font-weight:900; font-size:34px; padding:0 4px; user-select:none; }
+.phone-box{ width:64px; height:64px; font-size:28px; display:flex; align-items:center; justify-content:center; border:2px solid #e9f5ec; border-radius:14px; background:#fff; box-shadow:0 2px 10px rgba(0,0,0,0.06); font-weight:900; }
+.phone-box.is-active{ outline:3px solid #14a454; }
+.kbd{ width:1000px; height:350px; background:#cfeee0; border-radius:28px; padding:24px; display:flex; flex-direction:column; gap:20px; justify-content:center; margin-top:40px; box-shadow:0 8px 20px rgba(0,0,0,0.10); }
+.kbd-row{ display:flex; justify-content:center; gap:16px; }
+.kbd-key{ width:180px; height:60px; border:0; border-radius:14px; font-weight:900; font-size:28px; cursor:pointer; background:#fff; box-shadow:0 2px 6px rgba(0,0,0,0.06); }
+.kbd-row-last{ gap:16px; }
+.kbd-key--wide{ width:278px; }
+
+/* 전화번호 화면 하단 버튼: 이미지처럼 우하단 고정 */
+.phone-actions{ position:absolute; right:160px; bottom:90px; display:flex; gap:24px; z-index: 10; }
+
+/* ✅ 완료 화면(EventFinish) 배경을 뷰포트 기준으로 고정/채움 */
+/* 완료 화면: 1920x1200 고정 + 배경 고정 크기 */
+.finish-page-bg{
+  width: 1920px;
+  min-height: 1200px;
+  margin: 0 auto;
+  background: url('../assets/eventComplete/event-complete-finish.svg') center top/1920px 1200px no-repeat;
+}
+
+/* ✅ 전화번호 입력 화면(EventPhone) 배경 연결 (뷰포트 기준 채움) */
+/* 전화번호 입력 화면: 배경 강제 적용 (우선순위↑) */
+main.done-wrap.done-wrap--phone.phone-page-bg{
+  width: 1920px;
+  min-height: 1200px;
+  margin: 0 auto;
+  background: url('../assets/eventComplete/event-complete-bg-number.svg') center top/1920px 1200px no-repeat !important;
+}

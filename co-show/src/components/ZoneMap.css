@@ -1,0 +1,65 @@
+.zone-layout {
+  display: flex;
+  gap: 24px;
+}
+
+/* 왼쪽: 구역 버튼 지도 */
+.zone-map {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5열 구조 */
+  grid-auto-rows: 90px;
+  gap: 8px;
+  width: 700px;
+}
+
+/* 각 구역 버튼 */
+.zone-btn {
+  background: #fbf4dd;                 /* 연한 베이지 */
+  border: 2px solid #d0c8a8;
+  border-radius: 4px;
+  padding: 4px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+  font-family: "Pretendard", system-ui, -apple-system, BlinkMacSystemFont;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  white-space: pre-line;
+  transition: border 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
+  outline: none;
+}
+
+.zone-btn:hover {
+  border-color: #ff8d8d;
+  box-shadow: 0 0 0 2px rgba(255, 100, 100, 0.2);
+  transform: translateY(-1px);
+}
+
+/* 선택된 버튼 */
+.zone-btn.selected {
+  border: 4px solid #ff3131;       /* 두꺼운 빨간 테두리 */
+  box-shadow: 0 0 0 3px rgba(255, 49, 49, 0.4);
+}
+
+/* 오른쪽: 세부 정보 영역 */
+.zone-detail {
+  flex: 1;
+  min-width: 280px;
+  padding: 16px 20px;
+  border-radius: 8px;
+  background: #f7f7f7;
+  border: 1px solid #e0e0e0;
+}
+
+.zone-detail h2 {
+  margin: 0 0 10px;
+  font-size: 22px;
+}
+
+.zone-detail p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+}

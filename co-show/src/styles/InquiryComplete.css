@@ -1,0 +1,36 @@
+.inquiry-complete-wrap{
+  width: 1920px;
+  min-height: 1200px;
+  position: relative;
+  background: center top/1920px 1200px no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  margin: 0 auto;
+  background: url("../assets/inquiry/문의완료_배경.svg");
+}
+
+.back-btn{
+  position: absolute;
+  left: 430px;   
+  top: 840px;
+  width: 359px;
+  height: 126px;
+  border-radius: 120px;
+  background-image: url("../assets/inquiry/문의_이전으로버튼.svg");
+}
+
+.complete-btn{
+  position: absolute;
+  left: 140px;   
+  top: 840px;
+  width: 266px;
+  height: 126px;
+  border-radius: 120px;
+  background-image: url("../assets/inquiry/문의_완료버튼.svg");
+}
+.inquiry-calling{
+  width: 1920px;
+  min-height: 1200px;
+}

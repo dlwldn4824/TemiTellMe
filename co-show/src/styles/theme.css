@@ -1,0 +1,17 @@
+:root{
+  --bg:#fdeeee;
+  --text:#111;
+
+  --card-yellow:#F7D36E; --card-yellow-dark:#E9AE2B;
+  --card-blue:#94C3DF;   --card-blue-dark:#62A4CD;
+  --card-green:#B9DB6D;  --card-green-dark:#8BAA3A;
+  --card-red:#EF6B6A;    --card-red-dark:#7A2C2C;
+  --card-purple:#A98AF8; --card-purple-dark:#41217F;
+
+  --radius:28px;
+  --shadow:0 14px 28px rgba(0,0,0,.12);
+  --shadow-hover:0 18px 42px rgba(0,0,0,.16);
+
+  --card-width:313px;   /* 시안 기준 */
+  --card-height:560px;  /* 시안 기준 */
+}

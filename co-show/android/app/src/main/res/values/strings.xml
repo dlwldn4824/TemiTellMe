@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">co-show</string>
+    <string name="title_activity_main">co-show</string>
+    <string name="package_name">com.example.coshowsample</string>
+    <string name="custom_url_scheme">com.example.coshowsample</string>
+</resources>

@@ -1,0 +1,86 @@
+.guide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(#bce3f9 50%, #d1f3c5 50%);
+  overflow-x: hidden;
+}
+
+/* 상단 하늘 영역 */
+.hero {
+  width: 100%;
+  height: 320px;
+  background: #bce3f9;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 12%;
+  position: relative;
+}
+
+.hero-text {
+  background: #fff;
+  color: #333;
+  font-weight: 700;
+  font-size: 20px;
+  border-radius: 16px;
+  padding: 10px 16px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* 카드 3개 구역 */
+.card-area {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 32px;
+  margin-top: -60px; /* 상단과 약간 겹치게 */
+  flex-wrap: wrap;
+  padding: 0 20px 60px;
+}
+
+/* 개별 카드 */
+.card {
+  width: clamp(200px, 22vw, 260px);
+  height: 320px;
+  border: 3px solid;
+  border-radius: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 28px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.12);
+}
+
+/* 아이콘 영역 */
+.icon-box {
+  width: 90px;
+  height: 90px;
+  border-radius: 16px;
+  background: #dfe6ee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #555;
+  margin-bottom: 18px;
+}
+
+.card h3 {
+  margin: 8px 0 4px;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.card p {
+  font-size: 14px;
+  color: #555;
+}

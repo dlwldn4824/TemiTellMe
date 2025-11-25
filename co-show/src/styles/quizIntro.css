@@ -1,0 +1,58 @@
+.quiz-intro {
+  position: relative;
+  width: 1920px;
+  height: 1200px;
+  margin: 0 auto;
+  overflow: hidden;
+  background:  url("../assets/quiz/퀴즈인트로배경.png");
+}
+
+
+.quiz-title {
+  position: relative;
+  font-size: 70px;
+  font-weight: 800;
+  color: #333;
+  top: 80px;
+  text-align: center;
+}
+
+.quiz-btn-wrap {
+  display: flex;
+  gap: 100px;
+  align-self: center;
+}
+.intro-btn {
+  position: absolute;
+  border: none;
+  outline: none;
+  background: transparent; /* ✨ 투명하게 */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+
+/* 버튼 색상 */
+.intro-btn.quiz {
+  width: 750px;
+  height: 750px;
+  left: 360px;
+  top:133px;
+  background-image:  url("../assets/quiz/퀴즈풀기버튼.svg");}
+
+.intro-btn.type {
+  width: 1000px;
+  height: 1000px;
+  left:915px;
+  top:250px;
+  background-image:  url("../assets/quiz/유형테스트가기버튼.svg");
+}
+
+/* 호버 효과 */
+.intro-btn:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}

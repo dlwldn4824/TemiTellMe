@@ -1,0 +1,117 @@
+.quiz-wrap {
+  min-height: 100vh;
+  background:
+    repeating-linear-gradient(
+      90deg,          /* ← 세로 방향으로 변경 */
+      #BFE9F9 0 24px,
+      #C8F0FA 24px 48px
+    );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 38px 16px 60px;
+}
+
+
+/* 진행도 점 */
+.progress{ display:flex; gap:10px; margin-bottom:14px; }
+.dot{
+  width:10px; height:10px; border-radius:50%;
+  background:#a9cfe0; transition:transform .2s;
+}
+.dot.is-active{ background:#2f90c5; transform:scale(1.25); }
+
+/* 칠판 박스 */
+.board{
+  position:relative;
+  width:min(880px, 95%);
+  background:#016A66;            /* 초록 칠판 */
+  border:14px solid #FFC372;      /* 나무 테두리 느낌 */
+  border-radius:12px;
+  color:#fff;
+  padding:28px 20px 24px;
+  box-shadow:0 10px 30px rgba(0,0,0,.16);
+}
+
+/* 왼쪽 상단 리본 */
+.ribbon{
+  position:absolute; top:-18px; left:22px;
+  background:#48a8e1; color:#fff; font-weight:900;
+  padding:5px 12px; border-radius:8px;
+}
+
+/* 문제 텍스트 */
+.board-title{
+  text-align:center; font-size:24px; font-weight:900; margin:0 0 24px;
+}
+
+/* OX 선택 */
+.choices{ display:flex; justify-content:center; gap:44px; margin-bottom:26px; }
+
+.choice-circle{
+  width:126px; height:126px; border-radius:50%;
+  border:none; cursor:pointer; background:#fff; color:#111;
+  font-weight:900; font-size:56px; line-height:1;
+  box-shadow:0 6px 16px rgba(0,0,0,.12);
+  transition:transform .22s ease, box-shadow .22s ease, background .22s;
+}
+.choice-circle:hover{ transform:scale(1.06); }
+.choice-circle.is-selected{
+  transform:scale(1.2);
+  background:#ffe27a;
+  box-shadow:0 12px 28px rgba(0,0,0,.18);
+}
+
+/* 객관식 타일 */
+.tiles{
+  display:grid; grid-template-columns:repeat(4, 1fr);
+  gap:12px; margin-bottom:22px; padding:0 6px;
+}
+.tile{
+  background:#f4f4f4; color:#222; border:0; border-radius:10px;
+  height:64px; padding:0 12px; cursor:pointer; font-weight:900;
+  box-shadow:0 6px 14px rgba(0,0,0,.1);
+  transition:transform .18s, background .18s, box-shadow .18s;
+}
+.tile:hover{ transform:translateY(-3px); }
+.tile.is-selected{ transform:scale(1.05); background:#ffd966; }
+
+/* 하단 CTA */
+.cta-row{ display:flex; justify-content:center; }
+.btn-primary{
+  background:#ffde59; color:#111; border:0; border-radius:12px;
+  padding:10px 22px; font-weight:900; cursor:pointer;
+  box-shadow:0 6px 14px rgba(0,0,0,.12);
+}
+.btn-primary:hover{ filter:brightness(.95); }
+
+/* 결과 패널 */
+.result{ display:flex; justify-content:center; }
+.result-card{
+  width:min(740px, 100%); background:#fff; color:#111;
+  border-radius:12px; padding:18px 16px 16px; margin:6px 0;
+  box-shadow:0 16px 38px rgba(0,0,0,.2);
+}
+.result-header{ display:flex; gap:12px; align-items:center; margin-bottom:10px; }
+.pill{
+  padding:6px 10px; border-radius:999px; font-weight:900; color:#fff; font-size:14px;
+}
+.pill.ok{ background:#2bb673; }
+.pill.no{ background:#ff6b6b; }
+
+.result-question{ font-weight:800; }
+.result-body{ padding:8px 2px 14px; }
+.explain{ margin:8px 0 0; color:#333; }
+
+.result-actions{ display:flex; justify-content:center; gap:12px; }
+.btn-secondary{
+  background:#eee; border:0; border-radius:12px; padding:10px 18px;
+  font-weight:900; cursor:pointer;
+}
+.btn-secondary:hover{ background:#e0e0e0; }
+
+/* 반응형 */
+@media (max-width: 640px){
+  .tiles{ grid-template-columns:repeat(2,1fr); }
+  .choice-circle{ width:112px; height:112px; font-size:50px; }
+}

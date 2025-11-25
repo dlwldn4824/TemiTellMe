@@ -1,0 +1,22 @@
+.type-start-page {
+  /* 배경 유지 */
+  width: 1920px;
+  min-height: 1200px;
+  position: relative;
+  background: center top/1920px 1200px no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  margin: 0 auto;
+  background: url("../assets/typetest/TypeTestStartBg.svg")
+}
+/* Figma 좌표: X=1269, Y=956, W=436, H=139 */
+.type-start-btn{
+  position: absolute;
+  left: 1309px;
+  top: 684px;
+  width: 381px;
+  height: 381px;
+  background: url("../assets/typetest/TypeTestStartBtn.svg")
+}

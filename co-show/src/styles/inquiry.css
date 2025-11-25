@@ -1,0 +1,25 @@
+
+body.inquiry-route {
+  background: none !important;
+}
+
+.inquiry-canvas {
+  position: relative;
+  width: 1920px;
+  height: 1200px;
+  margin: 3 auto;
+
+  background: url("/src/assets/inquiry/문의하기.svg") center top / cover no-repeat;
+}
+.inquiry-btn-img {
+  position: absolute;
+  width: auto;
+  height: auto;
+  cursor: pointer;
+  user-select: none;
+}
+
+.inquiry-btn-img:hover {
+  transform: scale(1.03);
+  transition: 0.15s ease;
+}

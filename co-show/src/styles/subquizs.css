@@ -1,0 +1,193 @@
+/* 전역 배경 제거 & 스코프 분리 */
+body.quiz-route,
+body.quiz-result-route,
+body.quiz-wrong-route { background: none !important; }
+.qz-page { position: relative; min-height: 1200px; isolation: isolate; }
+
+/* 공통 캔버스 */
+.qz-canvas { position: relative; width: 1920px; height: 1200px; margin: 0 auto; overflow: hidden; }
+
+/* ✅ 문항별 배경 (여기만 이미지 교체) */
+.qz-canvas.qz-q1 { background: url("../assets/subquiz/dance_bg.svg") center top/cover no-repeat; }
+.qz-canvas.qz-q2 { background: url("../assets/subquiz/voice_bg.svg") center top/cover no-repeat; }
+.qz-canvas.qz-q3 { background: url("../assets/subquiz/photoquiz_bg.svg") center top/cover no-repeat; }
+
+/* O/X 같은 버튼은 동일 이미지 사용 가능 */
+.qz-btn{
+  position: absolute;
+  width: 347.5px;
+  height: 347.5px;
+  border: none;
+  padding: 0;
+  outline: none;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+  transition: width .15s ease, height .15s ease, transform .15s ease, box-shadow .15s ease;
+  border-radius: 50%;
+}
+.qz-btn.selected{ transform: scale(1.02); box-shadow: 0 12px 24px rgba(0,0,0,.18); }
+
+/* 위치 고정 */
+.qz-btn-o{ left:563px; top:388px; background-image:url("../assets/subquiz/o_btn.svg"); }
+.qz-btn-x{ left:1018px; top:388px; background-image:url("../assets/subquiz/x_btn.svg"); }
+
+/* 선택 안 된 버튼 축소(176×176) + 좌표도 별도 지정 가능 */
+.qz-btn-o.shrink{ 
+  left: 633px;  /* 원래 563px → 약간 오른쪽 */
+  top: 465px;   /* 원래 388px → 아래로 */
+  background-image: url("../assets/subquiz/unchecked_obtn.svg");/* 필요 시 이동 */ /* left:580px; top:410px; */ }
+.qz-btn-x.shrink {
+  left: 1118px; /* 원래 1018px → 오른쪽 */
+  top: 473px;   /* 아래로 살짝 */
+  background-image: url("../assets/subquiz/unchecked_xbtn.svg");
+}
+/* 선택 안 된 버튼 축소(176 x 176) */
+.qz-btn.shrink{
+  width: 176px;
+  height: 176px;
+}
+
+/* 정답 확인 버튼: 428×139, x=1444, y=976 */
+.qz-confirm{
+  position: absolute;
+  left: 1444px;
+  top: 976px;
+  width: 428px;
+  height: 139px;
+  border: none;
+  padding: 0;
+  outline: none;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  cursor: not-allowed; /* 기본 비활성 */
+  transition: transform .15s ease, box-shadow .15s ease;
+  border-radius: 70px;
+  /* 🔁 기본(비활성) 이미지 */
+  background-image: url("../assets/subquiz/pre_check_btn.svg");
+}
+.qz-confirm.enabled{
+border-radius: 70px;
+  cursor: pointer;
+  /* 🔁 활성 이미지 */
+  background-image: url("../assets/subquiz/check_btn.svg");}
+.qz-confirm.enabled:hover{ transform:translateY(-1px); box-shadow:0 12px 24px rgba(0,0,0,.18); }
+
+/* ===== 결과/오답 공통 ===== */
+.qz-result, .qz-wrong {
+  position:relative; width:1920px; height:1200px; margin:0 auto; overflow:hidden;
+}
+.qz-result.qz-q1 { background:url("../assets/subquiz/dance_correct_bg.svg") center top/cover no-repeat; }
+.qz-result.qz-q2 { background:url("../assets/subquiz/voice_correct_bg.svg") center top/cover no-repeat; }
+.qz-result.qz-q3 { background:url("../assets/subquiz/photo_correct_bg.svg") center top/cover no-repeat; }
+
+.qz-wrong.qz-q1 { background:url("../assets/subquiz/1번오답배경.svg") center top/cover no-repeat; }
+.qz-wrong.qz-q2 { background:url("../assets/subquiz/2번오답배경.svg") center top/cover no-repeat; }
+.qz-wrong.qz-q3 { background:url("../assets/subquiz/3번오답배경.svg") center top/cover no-repeat; }
+
+/* 텍스트/버튼 이미지도 CSS에서 */
+.qz-result-text.qz-correct { position:absolute; left:50%; top:420px; transform:translateX(-50%);
+  /* width:900px; height:160px; 
+  background:url("../assets/quiz/q_correct_text.svg") 
+  center/contain no-repeat;  */
+}
+.qz-wrong-text { position:absolute; left:50%; top:420px; transform:translateX(-50%);
+  width:900px; height:160px;
+   /* background:url("../assets/quiz/q_wrong_text.svg") center/contain no-repeat;  */
+}
+
+.qz-next-btn { position:absolute; left:1455px; top:975px; width:384px; height:139px; border:none; outline:none; cursor:pointer;
+  background:url("../assets/subquiz/nextquiz.png") center/cover no-repeat; 
+  border-radius:70px; }
+body.qz-q3 .qz-next-btn {
+  background: url("../assets/subquiz/final_quiz_btn.png") center/cover no-repeat;
+}
+.qz-retry-btn { position:absolute; left:1028px; top:975px; width:384px; height:139px; border:none; border-radius: 70px; outline:none; cursor:pointer;
+  background:url("../assets/subquiz/tryagain_btn.svg") center/cover no-repeat;
+   border-radius:70px; }
+.qz-explain-btn { position:absolute; left:1455px; top:975px; width:384px; height:139px; border:none;border-radius: 70px; outline:none; cursor:pointer;
+  background:url("../assets/subquiz/answer_btn.svg") center/cover no-repeat;
+   border-radius:70px; }
+.qz-result {
+  position: relative;
+  width: 1920px;
+  height: 1200px;
+  background: url("../assets/quiz/q_correct_bg.svg") center/cover no-repeat;
+}
+
+.qz-result-text {
+  position: absolute;
+  width: 600px;
+  height: 180px;
+  top: 350px;
+  left: 660px;
+  background: url("../assets/quiz/q_correct_text.svg") center/cover no-repeat;
+}
+
+
+.qz-next-btn:hover {
+  transform: scale(1.05);
+}
+
+.video-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* 오른쪽 위 X 버튼 */
+.video-close-btn {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  font-size: 36px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-close-btn:hover {
+  background: rgba(0, 0, 0, 0.9);
+}
+.video-overlay{
+  background-color: #83A3BD;
+  position: relative; width: 1920px; height: 1200px; isolation: isolate; 
+}
+/* 영상 팝업 중에는 Topbar 안 보이게 */
+.video-open .topbar {
+  display: none !important;
+}
+
+/* 닫기 버튼 */
+.video-close-btn {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  font-size: 36px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;                /* 🔥 비디오보다 위 */
+}

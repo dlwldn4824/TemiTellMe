@@ -1,0 +1,533 @@
+.canvas {
+  position: relative;
+  width: 1920px;
+  height: 1200px;
+  margin: 0 auto;
+  overflow: hidden;
+  background: url("../assets/train/train_bg.png") center/cover no-repeat;
+  --y-head: 1260px;
+  --y-cars: 1160px;
+  --gap: 30px;
+  --speed: 50s;
+}
+/* ⭐ 사용자 스크롤 담당 영역 */
+.scrollArea {
+  position: absolute;
+  inset: 0;             /* 상하좌우 꽉 채움 */
+  overflow-x: auto;     /* 가로 스크롤 가능 */
+  overflow-y: hidden;
+  /* 모바일에서 부드러운 스크롤 */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* 전체 트랙 */
+.track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  gap: var(--gap);
+  width: max-content;
+  height: 100%;       /* ✅ 부모 높이 상속 */
+  align-items: flex-end;
+  z-index: 5;
+  animation: moveTrain var(--speed) linear infinite;
+}
+
+/* 스크롤 중일 때 애니메이션 멈춤 */
+.pause {
+  animation-play-state: paused;
+}
+
+/* .canvas:hover .track {
+  animation-play-state: paused;
+} */
+
+/* 한 세트 */
+.segment {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--gap);
+  position: relative;
+  height: 100%;
+  /* ✅ 절대좌표 대신 transform으로 Y 위치 조절 */
+  transform: translateY(calc(var(--y-cars) - 1200px));
+}
+
+/* 기관차 */
+.head {
+  width: 320px;
+  height: auto;
+  transform: translateY(calc(var(--y-head) - var(--y-cars))); /* 위로 248px */
+  margin-right: 30px;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* 객차 버튼 */
+.carBtn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  width: 280px;
+  flex: 0 0 auto;
+  position: relative;
+  z-index: 5;
+  transition: transform 0.2s ease;
+}
+.carBtn img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.carBtn:hover {
+  transform: translateY(-4px);
+}
+
+/* 기차가 왼쪽으로 무한 루프 이동 */
+@keyframes moveTrain {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.carBtn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  position: relative;
+}
+
+.carWrap {
+  position: relative;
+  display: inline-block;
+}
+
+.carImg {
+  display: block;
+  width: 100%;
+}
+
+.carLabel {
+  position: absolute;
+  top: 70px;   /* 🔥 텍스트를 기차 위로 올림 */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 30px;
+  padding: 4px 8px;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 6px;
+
+  white-space: nowrap; /* 줄바꿈 방지 */
+}
+/* 기존 keyframes 예시 */
+@keyframes trainMove {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%); /* 두 줄 붙여놓은 만큼 조절해서 무한 루프 느낌 */
+  }
+}
+.title {
+  position: absolute;
+  left: 500px;
+  top: 100px;
+  font-family: "nanumRound", "Pretendard", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 70px;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: -0.03em;
+
+  color: #222;
+  margin: 40px 0 24px;
+
+  /* 약간 귀여운 느낌 */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+/* 🔹 지도 + 상세 패널: 위쪽, z-index 크게 */
+.zoneArea {
+  position: absolute;
+  top: 130px;
+  left: 63.5px;
+  width: 1763px;  
+  height: 544px;
+
+  display: flex;
+  gap: 24px;
+  align-items: stretch;
+  overflow: visible;
+  z-index: 20;
+}
+
+
+/* 🔹 왼쪽: 존 버튼들 그리드 */
+.zoneGrid {
+  flex: 2;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr)); /* 3열 */
+  grid-auto-rows: 80px;
+  gap: 10px;
+}
+
+/* 🔹 각 존 버튼 (기본) */
+.zoneBtn {
+  background: #fbf4dd;
+  border-radius: 6px;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-family: "nanumRound";
+  font-size: 29px;
+  border:none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: border 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
+}
+
+/* 호버 시 살짝 강조 */
+.zoneBtn:hover {
+  background: #ff8d8d;
+  border-color: #ff8d8d;
+  box-shadow: 0 0 0 2px rgba(255, 120, 120, 0.25);
+  transform: translateY(-1px);
+}
+
+/* 🔹 선택된 존 버튼: 두꺼운 빨간 보더 */
+.zoneBtnSelected {
+  background: #ff8d8d;
+}
+
+/* 🔹 오른쪽: 상세 정보 박스 */
+.zoneDetail {
+  font-family: nanumRound;
+  flex: 1;
+  min-width: 900px;
+  padding: 14px 18px;
+  border-radius: 8px;
+  background: #f7f7f7;
+  border: 1px solid #e0e0e0;
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+.zoneDetail h3 {
+  margin: 0 0 8px;
+  font-size: 45px;
+}
+
+.zoneDetail p {
+  margin: 0;
+}
+/* 지도 전체 래퍼 */
+.zoneArea {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  display: flex;
+  gap: 24px;
+}
+
+/* 왼쪽 실제 지도 부분 */
+.zoneMap {
+  flex: 2;
+  display: grid;
+  grid-template-columns: repeat(5, 140px);
+  grid-template-rows: 70px 20px 100px 100px 20px 100px;
+  grid-template-areas:
+    "media stage stage data car"
+    ".     roadTop roadTop roadTop ."
+    "battery bio  robot  energy  eco"
+    "big    display ai     comm    material"
+    ".      .     coss   .        ."
+    "semiNext green iot semiPart drone";
+  justify-content: center;
+  align-content: center;
+  gap: 10px;
+  background: #fff;
+}
+
+
+/* 무대 콘솔(회색 영역) */
+.stage {
+  grid-area: stage;
+  background: #d9d9d9;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+    font-size: 25px;
+
+}
+
+/* 가운데 coss 스피어 다이아몬드 */
+.coss { 
+  position: absolute;
+  left: 265px;
+  top:352px;
+  grid-area: coss;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  background: #d9d9d9;
+  transform: rotate(45deg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 700;
+}
+.coss span {
+  transform: rotate(-45deg);
+}
+.zoneMap {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(5, 150px);
+  grid-template-rows: 80px 30px 120px 120px 30px 120px;
+  grid-template-areas:
+    "media stage stage data car"
+    ".     .     .     .    ."
+    "battery bio  robot energy eco"
+    "big    display ai    comm material"
+    ".      .      coss  .      ."
+    "semiNext green iot semiPart drone";
+}
+/*  바이오헬스: 오른쪽 위 모서리 잘린 사다리꼴 */
+.zoneBtnBio {
+  /* Figma 159×167 기준 → 대략 오른쪽 위 25% 정도 깎은 모양 */
+  clip-path: polygon(
+    0 0,      /* 왼쪽 위 */
+    70% 0,    /* 윗변의 중간쯤까지 직선 */
+    100% 50%, /* 여기서 대각선으로 내려옴 */
+    100% 100%,/* 오른쪽 아래 */
+    0 100%    /* 왼쪽 아래 */
+  );
+}
+
+/* 🔻 지능형로봇: 왼쪽 위 모서리 비스듬하게 */
+.zoneBtnRobot {
+  clip-path: polygon(
+    0 50%,   /* 왼쪽에서 조금 내려온 지점 */
+    30% 0,  /* 왼쪽 위 모서리 살짝 안쪽 */
+    100% 0, /* 오른쪽 위 */
+    100% 100%, /* 오른쪽 아래 */
+    0 100%      /* 왼쪽 아래 */
+  );
+}
+.zoneBtnAI {
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 100%,
+    40% 100%,
+    0 50%
+  );
+}
+.zoneBtnDisplay {
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 50%,
+    60% 100%,
+    0 100%
+  );
+}
+.zoneBtnIot {
+  clip-path: polygon(
+        0 50%,   /* 왼쪽에서 조금 내려온 지점 */
+    40% 0,  /* 왼쪽 위 모서리 살짝 안쪽 */
+    100% 0, /* 오른쪽 위 */
+    100% 100%, /* 오른쪽 아래 */
+    0 100%      /* 왼쪽 아래 */
+  );
+}
+.zoneBtnGreen {
+  clip-path: polygon(
+    0 0,      /* 왼쪽 위 */
+    60% 0,    /* 윗변의 중간쯤까지 직선 */
+    100% 50%, /* 여기서 대각선으로 내려옴 */
+    100% 100%,/* 오른쪽 아래 */
+    0 100%    /* 왼쪽 아래 */
+  );
+}
+
+.goBtn:active {
+  transform: scale(0.97);    /* 누를 때 눌린 느낌 */
+}
+.goBtn:hover{ transform:translateY(-1px); box-shadow:0 12px 24px rgba(0,0,0,.18); }
+
+.btnImg {
+  border: none;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.goBtn{
+  width: 300px;
+  height: 80px;
+  border-radius: 20px;
+  border: none;
+}
+
+
+.zoneDetail p {
+  font-size: 25px;   /* 기본 16px → 1.6rem = 25.6px */
+  line-height: 1.4;
+  font-weight: 500;
+}
+.zoneDetail {
+  position: relative;      /* 버튼을 절대 위치로 붙일 기준 */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  padding: 24px;
+  border-radius: 12px;
+  background: white;
+}
+.goBtn {
+  position: absolute;
+  right: 24px;    /* zoneDetail padding 기준 */
+  bottom: 170px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: transparent;
+  border: none;
+}
+.zoneDetail {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;     /* ⭐ 스크롤 가능 */
+  padding-right: 10px;
+}
+
+
+.experienceList {
+  margin-top: 15px;
+}
+
+
+.zoneDetail p {
+  font-size: 40px;
+  line-height: 1.45;
+  margin-bottom: 30px;
+}
+
+
+.experienceItem {
+  font-size: 35px;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+/* 🔍 검색창 영역 */
+.searchBar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.searchInput {
+  width: 600px;
+  height: 70px;
+  border-radius: 20px;
+  border: 3px solid #444;
+  padding: 0 25px;
+  font-size: 28px;
+  font-weight: 600;
+  outline: none;
+}
+
+.searchInput::placeholder {
+  color: #aaa;
+  font-weight: 400;
+}
+/* 🔍 검색창 전체 영역 */
+.searchBar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 150px;
+}
+
+/* 입력창 */
+.searchInput {
+  width: 1200px;
+  height: 70px;
+  border-radius: 20px;
+  border: 3px solid #7c7c7c;
+  padding: 0 20px;
+  padding-left: 80px; /* 아이콘 영역만큼 여백 확보 */
+  font-size: 28px;
+  font-weight: 600;
+  outline: none;
+  border-radius: 40px;
+}
+
+.searchInput::placeholder {
+  text-align: center;
+  color: #505050;
+  font-weight: 400;
+  font-family: nanumRound;
+  font-size:30px
+}
+.searchBar {
+  position: relative;
+  z-index: 9999; /* 최상단으로 올림 */
+}
+.highlight {
+  background: #ffeb3b;
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-weight: 700;
+}
+/* 전체 검색 영역 */
+.searchBar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+
+/* 안쪽 박스 (아이콘 + 인풋 감싸는 용도) */
+.searchInner {
+  position: relative;
+  display: inline-block;
+}
+
+/* 포커스 시 더 검색창 느낌 */
+.searchInput:focus {
+  border-color: #ff6b3d;
+  box-shadow: 0 0 0 4px rgba(255, 107, 61, 0.2);
+}
+
+/* placeholder 스타일 – 글자색을 더 연하게 */
+.searchInput::placeholder {
+  color: #aaa;
+  font-weight: 400;
+  text-align: center;
+}
+
+/* 🔍 아이콘 */
+.searchIcon {
+  position: absolute;
+  left: 26px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 24px;
+  pointer-events: none; /* 아이콘 때문에 클릭 막히지 않게 */
+}

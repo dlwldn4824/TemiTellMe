@@ -1,0 +1,149 @@
+/* /pages/type/type.css */
+.type-result .type-card {
+  background: none !important; /* 카드 배경 제거 */
+}
+
+.type-result{
+  position: relative;
+  width: 1920px;
+  height: 1200px;
+  margin: 0 auto;
+  overflow: hidden;
+  /* 배경 이미지 + 백업 배경색 */
+  background: url("../assets/typetest/유형테스트결과_배경.svg") center top / cover no-repeat;
+}
+.type-card {
+  position: relative;
+  width: 1920px;
+  height: 1200px;
+  margin: 0 auto;
+  overflow: hidden;
+  display: grid; place-items: center;
+}
+
+.type-q {
+  font-size: 42px; font-weight: 800; color: #fff;
+  text-shadow: 0 2px 6px rgba(0,0,0,.35);
+  margin-top: -40px;
+}
+
+.type-btns {
+  top: 646px;
+  position: absolute; 
+  display: flex; gap: 80px;
+}
+
+.btn-ox {
+  width: 317.04px; height: 317.04px; border: none; background-size: cover; cursor: pointer;
+}
+.btn-o {  background: url("../assets/typetest/typetestObtn.svg") center/cover no-repeat; left:598px; }
+.btn-o:active { transform: scale(0.98); }
+.btn-x { background: url("../assets/typetest/typetestxbtn.svg") center/cover no-repeat; left:1013.13px;}
+.btn-x:active { transform: scale(0.98); }
+
+.type-start-btn {
+  width: 381px; height: 381px; border: none; cursor: pointer;
+  top:684px; left:1309 px;
+  background: url("../assets/typetest/TypeTestStartBtn.svg") center/cover no-repeat;
+}
+
+/* .type-result { width: 1000px; text-align: center; color: #fff; } */
+.type-result-title {  
+  display: inline-block;   /* stroke랑 fill을 딱 글자 영역만 차지하게 */
+  font-family: "DNFBitBit", sans-serif; 
+  font-size: 50px;
+  font-weight: 900;
+  color:#ffffff;
+  margin-bottom: -50px;
+}
+.type-result-desc{
+  font-family: "DNFBitBit", sans-serif; 
+  margin-bottom: -20px;
+  font-size: 30px;
+}
+
+/* 공통 버튼 스타일 제거 */
+.btn-primary,
+.btn-secondary {
+  font-size: 46px;
+  font-family: nanumRound;
+  position: absolute;
+  top: 160px;
+  border: none;
+  border-radius:120px ;
+  padding: 0;
+  cursor: pointer;
+  height: 84px;      
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+/* 첫 번째 버튼(추천 존 확인) → 이미지로 변경 */
+.btn-primary {
+  color: #fff;
+  background-color: black;
+  left: 600px;
+  width: 380px;   
+}
+
+/* 두 번째 버튼(다시 테스트) → 이미지로 변경 */
+.btn-secondary {
+  left: 380px;
+  width: 189px;   
+}
+
+/* 버튼 그룹을 정확 좌표에 배치 */
+.type-result-actions {
+  font-family: "DNFBitBit", sans-serif; 
+  position: absolute;
+  left: 721px;
+  top: 900px;
+  display: flex;
+  gap: 16px;   /* 버튼 간격 */
+  z-index: 5;  /* 배경 위로 */
+}
+
+.recommend-box {
+  width: 996px;
+  height: 428px;
+  position: absolute;
+  top: 430px;
+  left: 487px;
+  text-align: center;
+  background: rgba(255,255,255,0.2);
+  /* border-radius: 12px; */
+}
+
+/* 제목 스타일 */
+.recommend-title {
+  font-family: "DNFBitBit", sans-serif; 
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+/* 리스트 스타일 */
+.recommend-list {
+  font-family: "DNFBitBit", sans-serif; 
+
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  font-size: 24px;
+  line-height: 1.5;
+}
+.type-result-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 16px;
+}
+
+.type-result-image {
+  max-width: 100%;
+  height: auto;
+  /* 필요하면 고정 폭/비율 */
+  /* width: 480px; */
+}

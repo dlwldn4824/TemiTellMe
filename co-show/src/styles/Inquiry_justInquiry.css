@@ -1,0 +1,49 @@
+.leave-inquiry-wrap{
+  width: 1920px;
+  min-height: 1200px;
+  position: relative;
+  background: center top/1920px 1200px no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  margin: 0 auto;
+  background: url("../assets/inquiry/문의_키보드_배경.svg")
+}
+
+.inquiry-send{
+  position: absolute;
+  left: 650px;  
+  top: 950px;
+  width: 302px;
+  height: 118px;
+  border-radius: 120px;
+  background-image: url("../assets/inquiry/전송하기.svg");
+}
+
+
+.inquiry-input-box {
+  position: absolute;
+  left:240px;   
+  top: 550px;
+  width:706px;
+  height: 338px;
+  border: 2px rgba(173, 181, 189, 0.8);
+  background: #F1ECFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 40px;
+  color: #868e96;
+  cursor: text;
+  user-select: none;
+}
+
+.inquiry-hidden-textarea {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+}

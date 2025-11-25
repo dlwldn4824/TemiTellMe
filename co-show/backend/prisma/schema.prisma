@@ -1,0 +1,47 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model PhoneRegistration {
+  id        Int      @id @default(autoincrement())
+  phone     String
+  deviceId  String?
+  source    String?  @default("temi")
+  consent   Boolean? @default(false)
+  ip        String?
+  userAgent String?
+  createdAt DateTime @default(now())
+}
+
+model Inquiry {
+  id         Int      @id @default(autoincrement())
+  phone      String?
+  category   String?
+  message    String
+  imageUrl   String?
+  deviceId   String?
+  createdAt  DateTime @default(now())
+}
+
+model PhotoUpload {
+  id         Int      @id @default(autoincrement())
+  fileName   String
+  mimeType   String
+  size       Int
+  url        String
+  deviceId   String?
+  uploadedAt DateTime @default(now())
+}
+
+model EventLog {
+  id        Int      @id @default(autoincrement())
+  type      String
+  data      String   @default("{}") // JSON string
+  timestamp DateTime @default(now())
+  deviceId  String?
+}

@@ -1,0 +1,179 @@
+/* 전체 페이지 */
+.rec-page{
+  position: relative;                 /* ⬅️ 섹션 절대배치 기준 */
+  width: 1920px;
+  height: 1200px;
+  margin: 0 auto;
+  padding: 24px 24px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border: 2px solid #bfe0ff;
+  border-radius: 20px;
+
+  /* 배경 보이도록 세팅 */
+  background-image: url("../assets/recommend/추천장소결과_bg.svg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+
+/* 상단 상세(두 칸 분할) — 부모가 위치/폭/그리드 결정 */
+.rec-hero{
+  position: absolute;
+  top: 250px;
+  left: 110px;          /* 원하는 좌측 위치 */
+  width: 1700px;        /* 전체 폭을 부모에서 결정 */
+  height: 500px;
+
+  display: grid;
+  /* 원하는 정확한 칼럼 폭(이미지 1040, 설명 660) */
+  grid-template-columns: 1040px 660px;
+  gap: 24px;
+
+  background: transparent;
+  padding: 0;
+}
+
+/* 그리드 아이템은 부모 칼럼을 “그대로” 채우기만 하면 됨 */
+.rec-hero-image,
+.rec-hero-desc {
+  height: 100%;
+}
+
+/* 왼쪽(이미지) — width/left 제거! */
+.rec-hero-image{
+  /* width, left 지우기 */
+  border-radius: 8px;
+  background: #ffffff;   /* 임시 배경(이미지 없을 때만 보임) */
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+
+/* 오른쪽(설명) — width/left 제거! */
+.rec-hero-desc{
+  border-radius: 8px;
+  background: #ffffff; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: flex; align-items: stretch;
+}
+
+/* 설명 카드 전체 (기존 유지) */
+.desc-card {
+  background:#fff;
+  border-radius:8px;
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;   /* 가로 중앙 */
+  justify-content:center; /* 세로 중앙 */
+  text-align:center;
+  gap:16px; /* 간격 살짝 늘림 */
+}
+
+/* 제목 (크게, 두껍게) */
+.desc-title {
+  margin:0;
+  font-size: 60px;      /* ✅ 기존보다 키움 (28px → 36px) */
+  font-weight: 900;
+  color: #222;
+}
+
+/* 본문 설명 */
+.desc-text {
+  margin:0;
+  font-size: 30px;      /* ✅ 기존보다 키움 (16px → 22px 정도) */
+  line-height: 1.6;
+  color:#333;
+  max-width: 90%;       /* 텍스트 폭 제한으로 균형 유지 */
+}
+
+/* 추가 정보(시간·연령·모집 방식 등) */
+.desc-meta {
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  justify-content:center;
+  font-size:30px;       /* ✅ 기존보다 키움 */
+  color:#555;
+}
+/* 하단 그린 스트립 — 페이지 기준으로 정확히 top: 879px */
+.rec-strip{
+  position: absolute;                 /* ⬅️ 페이지 기준 고정 위치 */
+  left: 24px;
+  right: 24px;
+  top: 850px;                         /* ⬅️ 요구사항: top = 879 */
+  min-height: 260px;
+  border-radius: 12px;
+  padding: 24px 72px;                 /* 좌우 네비 버튼 자리 */
+  display:flex; align-items:center;
+}
+
+/* 좌우 네비 버튼 */
+.strip-nav{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:44px; height:44px; border-radius:50%;
+  background:#eaf8ef; border:0; box-shadow:0 2px 0 rgba(0,0,0,.08);
+  font-size:26px; font-weight:900; cursor:pointer;
+}
+.strip-nav.prev{ left:20px; }
+.strip-nav.next{ right:20px; }
+
+/* 가로 스크롤 영역 */
+.strip-scroll{
+  overflow-x:auto; overflow-y:hidden;
+  display:flex; gap:24px;
+  scroll-behavior:smooth;
+}
+
+/* 카드 크기 키워서 한 화면에 "약 3개" 보이게 */
+.strip-item{
+  flex: 0 0 520px;                    /* ⬅️ 너비 키움 (520px × 3 + 여백 ≈ 3장) */
+  height: 230px;                      /* ⬅️ 높이 키움 */
+  background:#fff; border:2px solid #dff2e7; border-radius:14px;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:8px; cursor:pointer; padding:12px;
+  box-shadow: 0 6px 16px rgba(0,0,0,.05);
+  text-align: center;
+}
+.strip-item.active{ outline:4px solid #3cb371; }
+.strip-item .thumb{
+  width:100%; height:120px;           /* 이미지 영역도 키움 */
+  border-radius:8px; overflow:hidden;
+  background:#f6f8fb; display:flex; align-items:center; justify-content:center;
+}
+.strip-item .thumb img{ width:100%; height:100%; object-fit:cover; }
+/* 하단 카드의 프로그램명 텍스트 */
+.strip-title {
+  font-weight: 800;       /* 글자 두께 */
+  font-size: 35px;        /* ✅ 글자 크기 키움 (기존 14~16px 정도일 가능성 있음) */
+  text-align: center;     /* 가운데 정렬 */
+  white-space: pre-line;
+  color: #222;            /* 글자 색 (선명한 검정톤) */
+  line-height: 1.3;
+  margin-top: 8px;        /* 이미지와 약간 간격 */
+}
+.primary-go {
+  width: 436px;
+  height: 109px;
+  border-radius: 20px;
+  border: none;
+  background: url("../assets/recommend/체험존구경가기_btn.svg") center/contain no-repeat;
+  cursor: pointer;
+}
+.desc-times{
+  font-size:30px;  
+}
+.rec-empty{  
+  font-size:60px;  
+  margin-left: 100px;
+}
+.strip-sub{
+   font-size:30px;
+   text-align: center;
+}

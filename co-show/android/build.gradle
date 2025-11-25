@@ -1,0 +1,26 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+plugins {
+    id 'com.android.application' version '8.2.2' apply false
+    id 'com.google.gms.google-services' version '4.4.2' apply false
+}
+
+apply from: "variables.gradle"
+
+// 모든 서브프로젝트에 Java 17 강제 적용
+subprojects {
+    afterEvaluate { project ->
+        if (project.hasProperty('android')) {
+            project.android {
+                compileOptions {
+                    sourceCompatibility JavaVersion.VERSION_17
+                    targetCompatibility JavaVersion.VERSION_17
+                }
+            }
+        }
+    }
+}
+
+tasks.register('clean', Delete) {
+    delete rootProject.layout.buildDirectory
+}

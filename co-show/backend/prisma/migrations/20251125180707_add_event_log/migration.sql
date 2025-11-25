@@ -1,0 +1,8 @@
+-- CreateTable
+CREATE TABLE "EventLog" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "type" TEXT NOT NULL,
+    "data" TEXT NOT NULL DEFAULT '{}',
+    "timestamp" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "deviceId" TEXT
+);

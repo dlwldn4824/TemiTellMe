@@ -1,0 +1,10 @@
+{
+  "appId": "com.example.coshowsample",
+  "appName": "co-show",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "http",
+    "url": "http://192.0.0.2:5173/",
+    "cleartext": true
+  }
+}

@@ -1,0 +1,53 @@
+.photo-page {
+  width: 1920px;
+  min-height: 1200px;
+  position: relative;
+  background:
+    url("../assets/photo/사진 찍기.png") center top/1920px 1200px no-repeat,
+    linear-gradient(#f7d1f7 0 48%, #ea8ada 48% 100%);
+  display: block; /* 버튼 절대 위치 배치를 위해 block으로 변경 */
+  margin: 0 auto;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* 공통 버튼 스타일 */
+.photo-btn {
+  position: absolute;
+  cursor: pointer;
+  transition: transform 0.15s ease, filter 0.15s ease;
+  user-select: none;
+}
+
+.photo-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  filter: brightness(1.05);
+}
+
+.photo-btn:active {
+  transform: translateY(0) scale(0.98);
+  filter: brightness(0.95);
+}
+
+/* ===== Figma 좌표 기반 위치 고정 ===== */
+.photo-btn-yes {
+  left: 499px;     /* X 좌표 */
+  top: 749px;      /* Y 좌표 */
+  width: 587px;    /* W */
+  height: 126px;   /* H */
+}
+
+.photo-btn-no {
+  left: 978px;     /* X 좌표 */
+  top: 749px;      /* Y 좌표 */
+  width: 443px;    /* W */
+  height: 126px;   /* H */
+}
+
+/* 이미지 크기 보정 */
+.photo-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
